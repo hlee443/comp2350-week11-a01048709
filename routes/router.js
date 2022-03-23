@@ -1,10 +1,10 @@
 const router = require('express').Router();
-//const database = include('databaseConnection');
+const database = include('databaseConnection');
 //const dbModel = include('databaseAccessLayer');
 //const dbModel = include('staticData');
 
-const userModel = include('models/web_user');
-const petModel = include('models/pet');
+// const userModel = include('models/web_user');
+// const petModel = include('models/pet');
 
 const crypto = require('crypto');
 const {v4: uuid} = require('uuid');
@@ -14,7 +14,8 @@ const passwordPepper = "SeCretPeppa4MySal+";
 router.get('/', async (req, res) => {
 	console.log("page hit");
 	try {
-		const users = await userModel.findAll({attributes: ['web_user_id','first_name','last_name','email']}); //{where: {web_user_id: 1}}
+		const userCollection = database.db('lab_example').collection('users');
+		const users = await userCollection.find().project({first_name: 1, last_name: 1, email: 1, _id: 1}).toArray();
 		if (users === null) {
 			res.render('error', {message: 'Error connecting to MySQL'});
 			console.log("Error connecting to userModel");
