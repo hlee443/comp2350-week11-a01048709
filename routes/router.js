@@ -1,10 +1,10 @@
 const router = require('express').Router();
 const database = include('databaseConnection');
-// const dbModel = include('databaseAccessLayer');
-// const dbModel = include('staticData');
+const dbModel = include('databaseAccessLayer');
+const dbModel = include('staticData');
 
-// const userModel = include('models/web_user');
-// const petModel = include('models/pet');
+const userModel = include('models/web_user');
+const petModel = include('models/pet');
 
 const crypto = require('crypto');
 const {v4: uuid} = require('uuid');
@@ -134,7 +134,7 @@ router.post('/addUser', async (req, res) => {
 	}
 });
 
-/*
+
 router.get('/', (req, res) => {
 	console.log("page hit");
 	database.getConnection(function (err, dbConnection) {
@@ -162,9 +162,16 @@ router.get('/', (req, res) => {
 		}
 	});
 });
-*/
 
-/*
+const Joi = require("joi");
+const schema = Joi.string().max(10).required();
+const validationResult = schema.validate(req.query.id);
+if (validationResult.error != null) {
+   console.log(validationResult.error);
+   throw validationResult.error;
+}
+
+
 router.post('/addUser', (req, res) => {
 	console.log("form submit");
 	database.getConnection(function (err, dbConnection) {
@@ -194,9 +201,8 @@ router.post('/addUser', (req, res) => {
 	});
 
 });
-*/
 
-/*
+
 router.get('/deleteUser', (req, res) => {
 	console.log("delete user");
 	database.getConnection(function (err, dbConnection) {
@@ -232,6 +238,6 @@ router.get('/deleteUser', (req, res) => {
 		}
 	});
 });
-*/
+
 
 module.exports = router;
