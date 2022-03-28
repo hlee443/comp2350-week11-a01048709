@@ -95,7 +95,7 @@ router.get('/deleteUser', async (req, res) => {
 		let userId = req.query.id;
 		if (userId) {
 			console.log("userId: " + userId);
-			let deleteUser = await database.db('lab_example').collection('users').deleteOne({ _id: ObjectId(userId) });
+			let deleteUser = await database.db('lab_example').collection('users').deleteOne({ "_id": ObjectId(userId) });
 			console.log("deleteUser: ");
 			console.log(deleteUser);
 			if (deleteUser !== null) {
@@ -105,8 +105,8 @@ router.get('/deleteUser', async (req, res) => {
 		res.redirect("/");
 	}
 	catch (ex) {
-		res.render('error', { message: 'Error connecting to MySQL' });
-		console.log("Error connecting to MySQL");
+		res.render('error', { message: 'Error connecting to MongoDB' });
+		console.log("Error connecting to MongoDB");
 		console.log(ex);
 	}
 });
