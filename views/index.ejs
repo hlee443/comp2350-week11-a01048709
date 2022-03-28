@@ -30,12 +30,12 @@
 								<td><%= allUsers[i].first_name %></td>
 								<td><%= allUsers[i].last_name %></td>
 								<td><%= allUsers[i].email %></td>
-								<td><a href="/deleteUser?id=<%= allUsers[i].web_user_id %>">
+								<td><a href="/deleteUser?_id=<%= allUsers[i]._id %>">
 									<span class="icon is-small">
 										<i class="fas fa-user-times"></i>
 									</span></a>
 								</td>
-								<td><a href="/showPets?id=<%= allUsers[i].web_user_id %>">
+								<td><a href="/showPets?_id=<%= allUsers[i]._id %>">
 									<span class="icon is-small">
 										<i class="fas fa-paw"></i>
 									</span></a>
