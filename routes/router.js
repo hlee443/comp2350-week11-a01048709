@@ -61,7 +61,7 @@ router.get('/showPets', async (req, res) => {
 	console.log("page hit");
 	try {
 		let userId = req.query.id;
-		const schema = Joi.string().max(10).required();
+		const schema = Joi.string().max(50).required();
 		const validationResult = schema.validate(userId);
 		if (validationResult.error != null) {
 			console.log(validationResult.error);
@@ -114,7 +114,7 @@ router.get('/deleteUser', async (req, res) => {
 router.post('/addUser', async (req, res) => {
 	try {
 		console.log("form submit");
-		const schema = Joi.string().max(10).required();
+		const schema = Joi.string().max(50).required();
 		const validationResultFName = schema.validate(req.body.first_name);
 		if (validationResultFName.error != null) {
 			console.log(validationResultFName.error);
