@@ -3,10 +3,11 @@ const database = include('databaseConnection');
 // const dbModel = include('databaseAccessLayer');
 // const dbModel = include('staticData');
 
-const userModel = include('models/web_user');
-const petModel = include('models/pet');
+// const userModel = include('models/web_user');
+// const petModel = include('models/pet');
 
 const crypto = require('crypto');
+const { ObjectID, ObjectId } = require('mongodb');
 const {v4: uuid} = require('uuid');
 
 const passwordPepper = "SeCretPeppa4MySal+";
@@ -86,7 +87,7 @@ router.get('/deleteUser', async (req, res) => {
 		let userId = req.query.id;
 		if (userId) {
 			console.log("userId: "+userId);
-			let deleteUser = await userModel.findByPk(userId);
+			let deleteUser = await database.db('lab_example').collection('users').deleteOne({_id: ObjectId(userId)});
 			console.log("deleteUser: ");
 			console.log(deleteUser);
 			if (deleteUser !== null) {
@@ -115,7 +116,7 @@ router.post('/addUser', async (req, res) => {
 		password_hash.update(req.body.password+passwordPepper+password_salt);
 
 
-		let newUser = userModel.build(
+		let newUser = database.db('lab_example').collection('users').insertOne(
 			{	
 				first_name: req.body.first_name,
 				last_name: req.body.last_name,
@@ -124,7 +125,6 @@ router.post('/addUser', async (req, res) => {
 				password_hash: password_hash.digest('hex')
 			}
 		);
-		await newUser.save();
 		res.redirect("/");
 	}
 	catch(ex) {
