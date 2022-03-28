@@ -3,7 +3,7 @@ const database = include('databaseConnection');
 // const dbModel = include('databaseAccessLayer');
 // const dbModel = include('staticData');
 
-// const userModel = include('models/web_user');
+const userModel = include('models/web_user');
 const petModel = include('models/pet');
 
 const crypto = require('crypto');
