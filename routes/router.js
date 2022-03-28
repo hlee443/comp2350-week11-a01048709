@@ -92,7 +92,7 @@ router.get('/deleteUser', async (req, res) => {
 	try {
 		console.log("delete user");
 
-		let userId = req.query.id;
+		let userId = req.query._id;
 		if (userId) {
 			console.log("userId: " + userId);
 			let deleteUser = await database.db('lab_example').collection('users').deleteOne({ _id: ObjectId(userId) });
