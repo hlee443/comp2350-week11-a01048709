@@ -1,10 +1,10 @@
 const router = require('express').Router();
 const database = include('databaseConnection');
 const dbModel = include('databaseAccessLayer');
-const dbModel = include('staticData');
+// const dbModel = include('staticData');
 
-const userModel = include('models/web_user');
-const petModel = include('models/pet');
+// const userModel = include('models/web_user');
+// const petModel = include('models/pet');
 
 const crypto = require('crypto');
 const {v4: uuid} = require('uuid');
@@ -171,7 +171,7 @@ if (validationResult.error != null) {
    throw validationResult.error;
 }
 
-
+/*
 router.post('/addUser', (req, res) => {
 	console.log("form submit");
 	database.getConnection(function (err, dbConnection) {
@@ -201,8 +201,8 @@ router.post('/addUser', (req, res) => {
 	});
 
 });
-
-
+*/
+/*
 router.get('/deleteUser', (req, res) => {
 	console.log("delete user");
 	database.getConnection(function (err, dbConnection) {
@@ -238,6 +238,6 @@ router.get('/deleteUser', (req, res) => {
 		}
 	});
 });
-
+*/
 
 module.exports = router;
